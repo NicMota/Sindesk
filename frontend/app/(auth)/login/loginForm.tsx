@@ -1,34 +1,35 @@
 'use client'
 import { TextInput, SubmitButton } from "@/components/input"
+import axios from "axios";
 import { signIn } from "next-auth/react";
+import { setConfig } from "next/config";
+import {setCookie} from 'cookies-next'
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { set } from "zod";
 export const LoginForm = () =>
 {   
     const router = useRouter(); 
+
     const handleSubmit = async (e : any) =>
     {   
         e.preventDefault();
-        const data = new FormData(e.currentTarget);
+        const formData = new FormData(e.currentTarget);
+       
         try {
-            const signInResponse = await signIn("credentials",
-                {
-                    email:data.get('email'),
-                    password:data.get('senha'),
-                    redirect:false
-                }
-            )
-            if(!signInResponse?.error)
-            {
-                router.replace('/dashboard');
-                router.refresh();
+            const data_object = {
+                email:formData.get('email'),
+                password:formData.get('senha')
             }
-            if(!signInResponse.ok)
-                throw new Error('deu bo')
-
-
-            toast.success("Loggin Succesfull");
-        
+            const {status,data} = await axios.post("http://localhost:8080/api/auth/login",data_object) 
+                if(status === 200)
+                {   
+                    setCookie('token',data.token);
+                    toast.success("Loggin Succesfull");
+                    router.replace('/dashboard');
+                    router.refresh();
+                }
+                 
         } catch (error) {
             console.log(error.message)
             toast.error("loggin insuccesfull")

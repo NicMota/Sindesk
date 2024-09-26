@@ -1,5 +1,5 @@
 package com.singed.sindesk.service;
-import com.singed.sindesk.model.Ticket;
+import com.singed.sindesk.domain.ticket.Ticket;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,7 +1,8 @@
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { NextAuthProvider } from "./providers";
+import { AuthProvider} from "@/app/context";
 import { Toaster } from "react-hot-toast";
 
 
@@ -20,12 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en" >
       <body className={inter.className}>
-        <NextAuthProvider>
+        <AuthProvider>
           {children} 
           <Toaster/>
-        </NextAuthProvider>
-        
-     
+        </AuthProvider>
       </body>
     </html>
   );

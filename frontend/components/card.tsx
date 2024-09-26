@@ -1,14 +1,17 @@
 'use client'
-
 import { useSession } from "next-auth/react"
 import { GoogleSignin } from "./input"
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/context";
 
 export function LoginCard() 
 {
 
-    const { data:session } = useSession();
-    
+    const { user } = useAuth();
+    if(user)
+    {
+        return <></>
+    }
     return(
         <div className="flex flex-col m-auto ">  
             <div className=" flex mx-auto h-full p-10 flex-col gap-y-6  ">

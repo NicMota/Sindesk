@@ -19,12 +19,12 @@ export default async function Register()
 
     return( 
         <Layout>
-            <div className="w-full h-full flex">
-                <div className=" bg-slate-300 p-5 w-3/4  h-full flex flex-col">
+         
+                <div className=" bg-slate-300 p-5 w-3/4  h-screen flex flex-col">
                     <RegisterForm/>
                 </div>
                    
-            </div>
+     
         </Layout>
     )
 }

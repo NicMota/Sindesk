@@ -1,6 +1,6 @@
 package com.singed.sindesk.service;
 
-import com.singed.sindesk.model.Ticket;
+import com.singed.sindesk.domain.ticket.Ticket;
 import com.singed.sindesk.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

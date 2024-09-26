@@ -1,4 +1,4 @@
-
+'use session'
 import { GoogleSignin, SubmitButton, TextInput } from "@/components/input";
 import { Layout } from "@/components/layout";
 
@@ -20,7 +20,7 @@ export default async function Login()
     
     return( 
         <Layout>
-            <div className="w-full bg-indigo-500 h-full flex">
+            <div className="w-full bg-indigo-500 h-screen flex">
                 <div className="  w-2/5 h-2/3 rounded bg-slate-100 border-2 border-amber-500 flex flex-col m-auto ">
                     <div className="m-auto flex gap-x-4">
                         <GoogleSignin/>     

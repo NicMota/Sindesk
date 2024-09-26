@@ -11,10 +11,7 @@ import { authConfig } from "@/lib/auth";
 export default async function CreateCallPage()
 {   
 
-    const session = await getServerSession(authConfig);
-    if (!session) {
-        redirect('/')
-    }
+   
     return(
         <Layout>
             <div className="bg-white h-3/4 flex m-auto border-4 border-amber-400 rounded w-1/3">

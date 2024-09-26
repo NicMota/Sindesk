@@ -1,6 +1,7 @@
 package com.singed.sindesk.controller;
 
-import com.singed.sindesk.model.Ticket;
+import com.singed.sindesk.domain.ticket.Ticket;
+import com.singed.sindesk.domain.ticket.TicketRequestDTO;
 import com.singed.sindesk.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins="http://localhost:3000")
 @RestController
 @RequestMapping("api/ticket")
 public class TicketController {
@@ -27,13 +29,13 @@ public class TicketController {
     }
 
     @PostMapping
-    public ResponseEntity<Ticket> create(@RequestBody Ticket ticket) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(ticketService.save(ticket));
+    public ResponseEntity<Ticket> create(@RequestBody TicketRequestDTO ticket){
+        return ResponseEntity.status(HttpStatus.CREATED).body(ticketService.save(new Ticket(ticket)));
     }
 
     @PutMapping
-    public ResponseEntity<Ticket> update(@RequestBody Ticket ticket) {
-        return ResponseEntity.status(HttpStatus.OK).body(ticketService.update(ticket));
+    public ResponseEntity<Ticket> update(@RequestBody TicketRequestDTO ticket) {
+        return ResponseEntity.status(HttpStatus.OK).body(ticketService.update(new Ticket(ticket)));
     }
 
     @DeleteMapping("/{id}")

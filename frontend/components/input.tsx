@@ -3,6 +3,8 @@ import { signIn, signOut } from "next-auth/react"
 import Image from "next/image"
 import google_logo from '@/public/images/google_logo.svg';
 import apple_logo from '@/public/images/apple.svg';
+import { deleteCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 export const TextInput = ({name,label}) => 
 {
     return(
@@ -19,8 +21,17 @@ export const NumberInput = ({name,label}) =>
         <div className="flex flex-col gap-y-2 w-96 text-slate-900">
             <label htmlFor={name} className="font-bold capitalize"> {label}</label>
             <input type='number' step='1' min='1' max='10' id={name} className='outline-none bg-amber-100 rounded border border-black text-slate-800 p-1' name={name}/>
+        </div>   
+    )
+}
+export const PasswordInput = ({name,label}) =>
+{
+    return(
+        <div className="flex flex-col gap-y-2 w-96 text-slate-900">
+            <label htmlFor={name} className="font-bold capitalize"> {label}</label>
+            <input type='password' id={name} className='outline-none bg-amber-100 rounded border border-black text-slate-800 p-1' name={name}/>
         </div>
-        
+       
     )
 }
 export const TextArea = ({name,label})=>
@@ -57,9 +68,17 @@ export const GoogleSignin = () =>
 }
 
 export const LogOutButton = () =>
-{
+{   
+    const router = useRouter();
+    function handleLogOut()
+    {
+        deleteCookie('token');
+        router.replace('/');
+        router.refresh();
+    
+    }
     return (
-        <button onClick={() => signOut()} className="m-auto cursor-pointer rounded-2xl font-bold bg-red-500 text-black p-2 w-20 text-center hover:bg-black hover:text-white transition-all duration-300">
+        <button onClick={()=>handleLogOut()} className="m-auto cursor-pointer rounded-2xl font-bold bg-red-500 text-black p-2 w-20 text-center hover:bg-black hover:text-white transition-all duration-300">
             Log out
         </button>
     )
