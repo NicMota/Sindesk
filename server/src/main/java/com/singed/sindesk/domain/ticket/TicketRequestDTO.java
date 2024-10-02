@@ -1,3 +1,5 @@
 package com.singed.sindesk.domain.ticket;
 
-public record TicketRequestDTO(String subject,String description, String status) {}
+import com.singed.sindesk.domain.user.User;
+
+public record TicketRequestDTO(String subject, String description, TicketStatus status, String sender) {}

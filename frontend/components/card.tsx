@@ -7,11 +7,6 @@ import { useAuth } from "@/app/context";
 export function LoginCard() 
 {
 
-    const { user } = useAuth();
-    if(user)
-    {
-        return <></>
-    }
     return(
         <div className="flex flex-col m-auto ">  
             <div className=" flex mx-auto h-full p-10 flex-col gap-y-6  ">

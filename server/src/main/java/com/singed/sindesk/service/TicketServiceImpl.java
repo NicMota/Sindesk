@@ -1,6 +1,7 @@
 package com.singed.sindesk.service;
 
 import com.singed.sindesk.domain.ticket.Ticket;
+import com.singed.sindesk.domain.user.User;
 import com.singed.sindesk.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ public class TicketServiceImpl implements TicketService{
 
     @Autowired
     private TicketRepository ticketRepository;
+
     @Override
     public Ticket save(Ticket ticket) {
         return ticketRepository.save(ticket);
@@ -36,5 +38,10 @@ public class TicketServiceImpl implements TicketService{
     @Override
     public void deleteById(int id) {
         ticketRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Ticket> getTicketsByUser(User user) {
+        return ticketRepository.findBySender(user);
     }
 }

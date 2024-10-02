@@ -1,5 +1,6 @@
 package com.singed.sindesk.domain.user;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.singed.sindesk.domain.ticket.Ticket;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,12 +24,18 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String Id;
     private String login;
+
+    @Column(unique = true,nullable = false)
     private String email;
     private String password;
     private String number;
 
+    @OneToMany(mappedBy = "sender")
+    @JsonManagedReference
+    private List<Ticket> tickets;
 
-
+    
+    @Enumerated(EnumType.STRING)
     private UserRole role;
 
     public User(String login,String email, String password, String number, UserRole role)

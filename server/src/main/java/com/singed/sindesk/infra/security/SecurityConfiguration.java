@@ -42,6 +42,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET,"/api/ticket").hasAnyRole("USER","ADMIN")
                         .requestMatchers(HttpMethod.POST,"api/ticket").hasAnyRole("USER","ADMIN")
                         .requestMatchers(HttpMethod.DELETE,"api/ticket").hasAnyRole("USER","ADMIN")
+                        .requestMatchers(HttpMethod.GET, "api/user/tickets/**").hasAnyRole("USER","ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter,UsernamePasswordAuthenticationFilter.class)

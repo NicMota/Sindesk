@@ -9,12 +9,10 @@ import { TicketForm }from "./ticketForm";
 import { authConfig } from "@/lib/auth";
 
 export default async function CreateCallPage()
-{   
-
-   
+{  
     return(
         <Layout>
-            <div className="bg-white h-3/4 flex m-auto border-4 border-amber-400 rounded w-1/3">
+            <div className="bg-white h-3/4 flex m-auto border-4 border-amber-400 rounded min-w-1/3 p-2">
                 <TicketForm/>
             </div>
         </Layout>

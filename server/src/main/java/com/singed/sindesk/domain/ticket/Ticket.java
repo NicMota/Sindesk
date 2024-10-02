@@ -1,5 +1,6 @@
 package com.singed.sindesk.domain.ticket;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.singed.sindesk.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,17 +25,16 @@ public class Ticket {
 
     private String subject;
     private String description;
-    private String status;
-
+    @Enumerated(EnumType.STRING)
+    private TicketStatus status;
+    
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "sender_id",
-            referencedColumnName = "Id"
-    )
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="sender_id")
+    @JsonBackReference
     private User sender;
 
     public Ticket(TicketRequestDTO ticketRequestDTO)
@@ -42,6 +42,14 @@ public class Ticket {
         this.subject = ticketRequestDTO.subject();
         this.description = ticketRequestDTO.description();
         this.status = ticketRequestDTO.status();
+    }
+    public Ticket(TicketRequestDTO ticketRequestDTO, User sender)
+    {
+        this.subject = ticketRequestDTO.subject();
+        this.description = ticketRequestDTO.description();
+        this.status = ticketRequestDTO.status();
+        this.sender = sender;
+
     }
     
 }

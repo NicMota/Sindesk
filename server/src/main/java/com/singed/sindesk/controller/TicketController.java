@@ -2,6 +2,9 @@ package com.singed.sindesk.controller;
 
 import com.singed.sindesk.domain.ticket.Ticket;
 import com.singed.sindesk.domain.ticket.TicketRequestDTO;
+import com.singed.sindesk.domain.ticket.TicketResponseDTO;
+import com.singed.sindesk.domain.user.User;
+import com.singed.sindesk.repository.UserRepository;
 import com.singed.sindesk.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,14 +16,18 @@ import java.util.Optional;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
-@RequestMapping("api/ticket")
+@RequestMapping("/api/ticket")
 public class TicketController {
     @Autowired
     private TicketService ticketService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping
-    public ResponseEntity<List<Ticket>> findAll() {
-        return ResponseEntity.status(HttpStatus.OK).body(ticketService.findAll());
+    public ResponseEntity<List<TicketResponseDTO>> findAll() {
+        List<TicketResponseDTO> ticketsList = ticketService.findAll().stream().map(TicketResponseDTO::new).toList();
+        return ResponseEntity.status(HttpStatus.OK).body(ticketsList);
     }
 
     @GetMapping("/{id}")
@@ -30,7 +37,8 @@ public class TicketController {
 
     @PostMapping
     public ResponseEntity<Ticket> create(@RequestBody TicketRequestDTO ticket){
-        return ResponseEntity.status(HttpStatus.CREATED).body(ticketService.save(new Ticket(ticket)));
+        User sender = (User) userRepository.findById(ticket.sender());
+        return ResponseEntity.status(HttpStatus.CREATED).body(ticketService.save(new Ticket(ticket,sender)));
     }
 
     @PutMapping

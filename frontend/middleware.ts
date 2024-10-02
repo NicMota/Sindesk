@@ -9,11 +9,8 @@ export const config = {
 export function middleware(request: NextRequest) {
   const token =  request.cookies.get('token')?.value;
   if(token)
-  {
-    const decodeUser = jwtDecode(token);
-    
     return NextResponse.next();
-  }
+  
 
   
 

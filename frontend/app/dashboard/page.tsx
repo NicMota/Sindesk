@@ -7,12 +7,14 @@ import { redirect } from "next/navigation";
 import { Ticket } from "./ticket";
 import { getCookie } from "cookies-next";
 import { cookies } from "next/headers";
+import { getAuthServer } from "../actions";
 
 export default async function Dashboard()
 {
    
-    const token = cookies().get('token')?.value;
-   const {status,data} = await axios.get("http://localhost:8080/api/ticket",{
+   const token = cookies().get('token')?.value;
+   const user = await getAuthServer();
+   const {status,data} = await axios.get("http://localhost:8080/api/user/tickets/" + user.id,{
     headers:{
         Authorization: `Bearer ${token}`
     }
@@ -26,7 +28,7 @@ export default async function Dashboard()
                     {data.map((e,i)=>(
                        <Ticket key={i} data={e}/>
                     )
-                        
+  
                     )}
                 </div>
                 <div className="w-1/3 flex flex-col ">

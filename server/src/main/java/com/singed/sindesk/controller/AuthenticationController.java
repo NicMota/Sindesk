@@ -36,6 +36,7 @@ public class AuthenticationController {
         var auth = this.authenticationManager.authenticate(usernamePassword);
 
         var token = jwtService.generateToken((User) auth.getPrincipal());
+
         return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 

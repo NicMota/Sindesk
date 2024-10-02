@@ -8,6 +8,7 @@ import axios from 'axios';
 interface JwtPayload {
   sub?: string;
   email?: string;
+  id?: string
   exp?: number;
 }
 
@@ -29,6 +30,7 @@ export function useAuth(){
   return context;
 };
 
+
 // Provider para gerenciar o estado de autenticação
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<JwtPayload | null>(null);
@@ -37,7 +39,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const setToken = (token: string) => {
     try {
       const decoded = jwtDecode<JwtPayload>(token);
-
+      console.log(decoded);
       setUser(decoded); // Armazena as informações do usuário decodificadas
     } catch (error) {
       console.error('Token inválido', error);

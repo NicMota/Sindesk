@@ -1,10 +1,15 @@
 package com.singed.sindesk.domain.ticket;
 
-public enum Status{
+public enum TicketStatus{
+
     OPEN("open"),
-    CLOSED("closed")
+    PENDING("pending"),
+    CLOSED("closed");
 
-    
-    public Status()
+    private String status;
 
+    TicketStatus(String status)
+    {
+        this.status = status;
+    }
 }

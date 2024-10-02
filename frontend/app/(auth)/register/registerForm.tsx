@@ -20,7 +20,7 @@ export const RegisterForm = () =>
                 email:formData.get('email'),
                 number:formData.get('telefone'),
                 password:formData.get('senha'),
-                status:"COMMON"
+                role:"COMMON"
             }
             const {status,data} = await axios.post('http://localhost:8080/api/auth/register',data_object);
             

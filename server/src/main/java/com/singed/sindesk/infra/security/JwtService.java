@@ -24,6 +24,8 @@ public class JwtService {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             String token = JWT.create()
                     .withIssuer("auth-api")
+                    .withClaim("username", user.getLogin())
+                    .withClaim("id", user.getId())
                     .withSubject(user.getEmail())
                     .withExpiresAt(genExpirationDate())
                     .sign(algorithm);

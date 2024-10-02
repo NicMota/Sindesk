@@ -74,7 +74,7 @@ export const LogOutButton = () =>
     {
         deleteCookie('token');
         router.replace('/');
-        router.refresh();
+        router.forward();
     
     }
     return (
