@@ -4,7 +4,7 @@ export const Layout = async ({children}) =>
 {   
     return (
         <>
-            <div className="bg-indigo-950 max-h-fit  min-h-screen flex flex-col z-40">
+            <div className="bg-indigo-950 h-full flex flex-col z-40">
                 <Navbar/>
                 {children} 
             </div>

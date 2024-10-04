@@ -14,7 +14,7 @@ export default async function Home() {
   return (
    <Layout>
        
-      <div className="flex h-screen">
+      <div className="flex">
         <div className="w-2/3 h-full flex bg-slate-300">
           {!user&&<LoginCard/>}
         </div>

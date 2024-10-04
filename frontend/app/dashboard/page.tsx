@@ -32,7 +32,7 @@ export default async function Dashboard()
                     )}
                 </div>
                 <div className="w-1/3 flex flex-col ">
-                    <a href='/dashboard/create' className="capitalize  m-auto cursor-pointer rounded-2xl font-bold bg-amber-400 text-black p-2 w-60 text-center hover:bg-black hover:text-white transition-all duration-300">
+                    <a href='/dashboard/create' className="capitalize  mx-auto my-32  cursor-pointer rounded-2xl font-bold bg-amber-400 text-black p-2 w-60 text-center hover:bg-black hover:text-white transition-all duration-300">
                         criar ticket
                     </a>
                 </div>
