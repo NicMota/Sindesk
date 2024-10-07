@@ -17,13 +17,10 @@ export const AdminDashboard = async () => {
 
     return (
         <Layout>
-            <div className="flex h-full max-h-full">
-                <div className="h-screen flex flex-col block bg-indigo-600 w-16 text-sm  *:cursor-pointer text-white ">
+            <div className="flex grow max-h-screen">
+                <div className="flex flex-col block bg-indigo-600 w-16 text-sm *:cursor-pointer text-white ">
                     <p className="odd:bg-black even:bg-white even:text-black h-16 flex hover:bg-orange-700 items-center justify-center">user</p>
                     <p className="odd:bg-black even:bg-white even:text-black h-16 flex hover:bg-orange-700 items-center justify-center">tickets</p>
-            
-                
-
                 </div>
                
                 <TicketsPanel data={data}/>

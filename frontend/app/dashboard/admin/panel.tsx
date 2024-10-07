@@ -11,22 +11,22 @@ export const TicketsPanel = ({data}) =>
         }).format(date);
     };
     return(
-        <div className="flex flex-col h-screen max-h-screen bg-indigo-100 ">
-            <div className="h-1/3 text-[5rem] border-b-2 border-black ">
+        <div className="flex flex-col w-fit max-w-fit max-h-full resize-x overflow-y-auto bg-indigo-100 ">
+            <div className="h-1/4 border-black text-5xl font-thin text-center py-auto ">
                 Seus tickets
             </div>
-            <div className="w-fit bg-yellow-50 max-w-[40rem] overflow-auto max-h-full h-2/3">
-                <table className='table-fixed text-left rounded bg-indigo-600 '>
-                    <thead className="bg-indigo-600">
-                        <tr className="*:px-2 *:py-1"><th>Status</th><th>Assunto</th><th>Solicitante</th><th>Data</th><th>prioridade</th></tr>
+            <div className="bg-indigo-100 overflow-y-auto">
+                <table className='border-collapse text-left   '>
+                    <thead className=" bg-indigo-100 sticky top-0">
+                        <tr className=""><th>Status</th><th>Assunto</th><th>Solicitante</th><th>Data</th><th>prioridade</th></tr>
                     </thead>
-                    <tbody className="bg-indigo-200">
+                    <tbody className="bg-indigo-200 max-h-min">
                         {data.map((e, i) => (
-                            <tr key={i} className="odd:bg-indigo-300  *:px-2 *:py-1 *:max-w-fit overflow-auto max-h-8 space-x-4 text-black font-bold border-white border hover:bg-indigo-600 cursor-pointer">
-                                <td><p className="break-words  max-w-32 w-20 overflow-auto">{e.status}</p></td>
-                                <td><p className="break-words  max-w-60 w-52 overflow-auto">{e.subject}</p></td>
-                                <td><p className="break-words  max-w-60 w-52 overflow-auto">{e.sender.email}</p></td>
-                                <td><p className="break-words  max-w-52 w-48 overflow-auto">{formatDate(e.createdAt)}</p></td>
+                            <tr key={i} className="odd:bg-indigo-300 space-x-4 text-black *:py-1 border-white border hover:bg-indigo-600 cursor-pointer">
+                                <td><p className="break-words  max-w-32  w-20 overflow-auto">{e.status}</p></td>
+                                <td><p className="break-words  max-w-96  w-80 overflow-auto">{e.subject}</p></td>
+                                <td><p className="break-words  max-w-96  w-80 overflow-auto">{e.sender.email}</p></td>
+                                <td><p className="break-words  max-w-52  w-48 overflow-auto">{formatDate(e.createdAt)}</p></td>
                                 <td>Urgente</td>
                             </tr>
                         ))}
