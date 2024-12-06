@@ -8,9 +8,9 @@ import { useRouter } from "next/navigation";
 export const TextInput = ({name,label}) => 
 {
     return(
-        <div className="flex flex-col gap-y-2 w-96 text-slate-900">
-            <label htmlFor={name} className="font-bold capitalize"> {label}</label>
-            <input type='text' id={name} className='outline-none bg-amber-100 rounded border border-black text-slate-800 p-1' name={name}/>
+        <div className="flex flex-col gap-y-2 w-96 font-serif text-slate-900">
+            <label htmlFor={name} className="font-bold text-amber-800 capitalize"> {label}</label>
+            <input type='text' id={name} required className='outline-none bg-amber-100 rounded border border-black text-slate-800 p-1' name={name}/>
         </div>
        
     )
@@ -27,8 +27,8 @@ export const NumberInput = ({name,label}) =>
 export const PasswordInput = ({name,label}) =>
 {
     return(
-        <div className="flex flex-col gap-y-2 w-96 text-slate-900">
-            <label htmlFor={name} className="font-bold capitalize"> {label}</label>
+        <div className="flex flex-col gap-y-2 w-96 font-serif text-slate-900">
+            <label htmlFor={name} className="font-bold text-amber-800 capitalize"> {label}</label>
             <input type='password' id={name} className='outline-none bg-amber-100 rounded border border-black text-slate-800 p-1' name={name}/>
         </div>
        
@@ -38,7 +38,7 @@ export const TextArea = ({name,label})=>
 {
     return(
         <div className="flex flex-col gap-y-2 w-96 text-slate-900">
-            <label htmlFor={name} className="font-bold capitalize"> {label}</label>
+            <label htmlFor={name} className="text-amber-800 font-serif font-bold capitalize"> {label}</label>
             <textarea  id={name} className='outline-none bg-amber-100 rounded border border-black h-24 resize-none text-slate-800 p-1' name={name}/>
         </div>
        
@@ -73,12 +73,12 @@ export const LogOutButton = () =>
     function handleLogOut()
     {
         deleteCookie('token');
-        router.replace('/');
-        router.forward();
+        router.replace('/')
+        router.refresh();
     
     }
     return (
-        <button onClick={()=>handleLogOut()} className="m-auto cursor-pointer rounded-2xl font-bold bg-red-500 text-black p-2 w-20 text-center hover:bg-black hover:text-white transition-all duration-300">
+        <button onClick={()=>handleLogOut()} className="m-auto cursor-pointer rounded-2xl font-bold bg-red-500 text-black p-2 w-20 text-center hover:bg-black hover:text-amber-100  transition-all duration-300">
             Log out
         </button>
     )

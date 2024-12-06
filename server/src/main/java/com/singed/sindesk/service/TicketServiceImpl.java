@@ -1,6 +1,7 @@
 package com.singed.sindesk.service;
 
 import com.singed.sindesk.domain.ticket.Ticket;
+import com.singed.sindesk.domain.ticket.TicketStatus;
 import com.singed.sindesk.domain.user.User;
 import com.singed.sindesk.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,4 +45,14 @@ public class TicketServiceImpl implements TicketService{
     public List<Ticket> getTicketsByUser(User user) {
         return ticketRepository.findBySender(user);
     }
+    @Override
+    public long getTicketsCountByStatus(TicketStatus status)
+    {
+        return ticketRepository.countByStatus(status);
+    }
+//    @Override
+//    public List<Ticket> getTicketsByStatus(TicketStatus status)
+//    {
+//        return ticketRepository.findAllByStatus(status);
+//    }
 }

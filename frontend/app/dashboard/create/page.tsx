@@ -6,13 +6,12 @@ import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
 import { TicketForm }from "./ticketForm";
-import { authConfig } from "@/lib/auth";
 
 export default async function CreateCallPage()
 {  
     return(
         <Layout>
-            <div className="bg-white h-3/4 flex m-auto border-4 border-amber-400 rounded min-w-1/3 p-2">
+            <div className=" h-full flex m-auto p-2">
                 <TicketForm/>
             </div>
         </Layout>

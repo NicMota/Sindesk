@@ -7,6 +7,7 @@ import com.singed.sindesk.domain.user.User;
 import com.singed.sindesk.infra.security.JwtService;
 import com.singed.sindesk.repository.UserRepository;
 
+import com.singed.sindesk.service.EmailService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,9 @@ public class AuthenticationController {
 
     @Autowired
     private JwtService jwtService;
+
+    @Autowired
+    private EmailService emailService;
     
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data)
@@ -48,8 +52,8 @@ public class AuthenticationController {
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
 
         User newUser =  new User(data.login(),data.email(),encryptedPassword,data.number(),data.role());
-
         this.repository.save(newUser);
+        emailService.sendVerificationEmail(newUser);
         return ResponseEntity.ok().build();
     }
 

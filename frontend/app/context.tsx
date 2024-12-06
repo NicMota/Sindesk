@@ -8,6 +8,7 @@ import axios from 'axios';
 interface JwtPayload {
   sub?: string;
   email?: string;
+  username? : string;
   id?: string
   exp?: number;
 }

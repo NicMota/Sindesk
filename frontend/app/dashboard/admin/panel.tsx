@@ -1,39 +1,45 @@
-export const TicketsPanel = ({data}) =>
+'use client'
+import axios from "axios";
+import { getCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
+import { Router } from "next/router";
+import { useEffect, useState } from "react";
+import admin from './admin.svg';
+import Image from "next/image";
+import TicketsPanel from "./components/TicketPanel";
+import { UsersPanel } from "./components/UsersPanel";
+import { panelOptions } from "./util";
+import FaqPanel from "./components/FaqPanel";
+
+export const AdminPanel = ({faq_topics,users,tickets,closed,pending,open})=>
 {
-    const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        return new Intl.DateTimeFormat('pt-BR', {
-            year: 'numeric', 
-            month: '2-digit', 
-            day: '2-digit', 
-            hour: '2-digit', 
-            minute: '2-digit',
-        }).format(date);
-    };
+    const [selected,setSelected] = useState('tickets');
+
     return(
-        <div className="flex flex-col w-fit max-w-fit max-h-full resize-x overflow-y-auto bg-indigo-100 ">
-            <div className="h-1/4 border-black text-5xl font-thin text-center py-auto ">
-                Seus tickets
+        <div className="flex grow h-full bg-amber-500">
+            <div className="flex flex-col block bg-amber-600 w-16  text-thin font-serif capitalize *:cursor-pointer text-white ">
+                {panelOptions.map((opt,ind)=>(
+                    <p key={ind} className="bg-amber-800 text-amber-100 even:bg-amber-200 even:text-amber-950 even:hover:bg-amber-500 even:hover:text-amber-200 h-16 flex hover:bg-amber-500 hover:text-black items-center justify-center" onClick={()=>setSelected(opt)}>{opt}</p>
+                ))}
+        
             </div>
-            <div className="bg-indigo-100 overflow-y-auto">
-                <table className='border-collapse text-left   '>
-                    <thead className=" bg-indigo-100 sticky top-0">
-                        <tr className=""><th>Status</th><th>Assunto</th><th>Solicitante</th><th>Data</th><th>prioridade</th></tr>
-                    </thead>
-                    <tbody className="bg-indigo-200 max-h-min">
-                        {data.map((e, i) => (
-                            <tr key={i} className="odd:bg-indigo-300 space-x-4 text-black *:py-1 border-white border hover:bg-indigo-600 cursor-pointer">
-                                <td><p className="break-words  max-w-32  w-20 overflow-auto">{e.status}</p></td>
-                                <td><p className="break-words  max-w-96  w-80 overflow-auto">{e.subject}</p></td>
-                                <td><p className="break-words  max-w-96  w-80 overflow-auto">{e.sender.email}</p></td>
-                                <td><p className="break-words  max-w-52  w-48 overflow-auto">{formatDate(e.createdAt)}</p></td>
-                                <td>Urgente</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+          
+            <div className="flex flex-col h-full w-1/2 bg-amber-100 border-r-2 p-2 border-amber-800">
+                <div className="flex text-black gap-x-2 items-between m-2 justify-around">
+                    <div className="border rounded border-black h-36 w-36 flex flex-col items-center"> <h1 className="text-center font-serif capitalize text-2xl">tickets abertos</h1><h1 className="text-amber-500 font-bold text-4xl">{open}</h1></div>
+                    <div className="border rounded border-black h-36 w-36 flex flex-col items-center"> <h1 className="text-center font-serif capitalize text-2xl">tickets pendentes</h1><h1 className="text-amber-500 font-bold text-4xl">{pending}</h1></div>
+                    <div className="border rounded border-black h-36 w-36 flex flex-col items-center"> <h1 className="text-center font-serif capitalize text-2xl">tickets fechados</h1><h1 className="text-amber-500 font-bold text-4xl">{closed}</h1></div>
+                </div>
+              
+                {selected==='tickets'&&<TicketsPanel tickets={tickets}/> || selected==='users'&& <UsersPanel users={users}/> || selected==='FAQ'&& <FaqPanel faq_topics={faq_topics}/>}
+                
             </div>
+            <div className="flex grow bg-[url('./dashboard/admin/admin.svg')] bg-no-repeat bg-contain bg-center"/>
+               
+
            
+            
         </div>
-        )
+    )
 }
+

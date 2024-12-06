@@ -6,25 +6,30 @@ import { useFormState } from "react-dom";
 
 import { useSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
-import { getServerSession } from "next-auth";
+import { getAuthServer } from "@/app/actions";
 import { RegisterForm } from "./registerForm";
-
+import sindesk from './SINDESK.svg';
+import Image from "next/image";
 
 export default async function Register()
 {
-    const session = await getServerSession();
+    const session = await getAuthServer();
     if(session)
         redirect('/dashboard');
 
 
     return( 
         <Layout>
-         
-                <div className=" bg-slate-300 p-5 w-3/4  h-screen flex flex-col">
+            <div className="w-full h-full flex ">
+
+            
+                <div className=" bg-amber-200 p-5 w-3/5 flex flex-col ">
                     <RegisterForm/>
                 </div>
-                   
-     
+                <div className="flex-1 py-4 bg-indigo-500 w-2/5">
+                    <Image className="self-center" alt='sindesk' src={sindesk}/>
+                </div>
+            </div>
         </Layout>
     )
 }

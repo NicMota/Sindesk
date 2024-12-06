@@ -2,9 +2,9 @@ package com.singed.sindesk.domain.ticket;
 
 public enum TicketStatus{
 
-    OPEN("open"),
-    PENDING("pending"),
-    CLOSED("closed");
+    ABERTO("aberto"),
+    PENDENTE("pendente"),
+    FECHADO("fechado");
 
     private String status;
 

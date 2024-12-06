@@ -26,6 +26,8 @@ public class JwtService {
                     .withIssuer("auth-api")
                     .withClaim("username", user.getLogin())
                     .withClaim("id", user.getId())
+                    .withClaim("role",user.getRole().toString())
+                    .withClaim("verified",user.getVerified())
                     .withSubject(user.getEmail())
                     .withExpiresAt(genExpirationDate())
                     .sign(algorithm);

@@ -8,7 +8,8 @@ interface JwtPayload {
     username?: string;
     id?:string;
     exp?: number;
-  }
+    verified?:string;
+}
 export const getAuthServer = async () =>
 {
     const token = cookies().get('token')?.value;

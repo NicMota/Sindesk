@@ -1,5 +1,5 @@
 'use client'
-import { TextInput, SubmitButton } from "@/components/input"
+import { TextInput, SubmitButton, PasswordInput } from "@/components/input"
 import axios from "axios";
 import { signIn } from "next-auth/react";
 import { setConfig } from "next/config";
@@ -15,7 +15,7 @@ export const LoginForm = () =>
     {   
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-       
+        
         try {
             const data_object = {
                 email:formData.get('email'),
@@ -29,17 +29,18 @@ export const LoginForm = () =>
                     router.replace('/dashboard');
                     router.refresh();
                 }
-                 
+            
         } catch (error) {
             console.log(error.message)
             toast.error("loggin insuccesfull")
         }
     }
     return (
-        <form className="flex flex-col  m-auto  gap-y-2" method="post" onSubmit={handleSubmit}>
+        <form className="flex flex-col m-auto gap-y-2" method="post" onSubmit={handleSubmit}>
             <TextInput name={'email'} label={'E-mail:'} />
-            <TextInput name={'senha'} label={'Senha:'} />
-            <SubmitButton/>            
+            <PasswordInput name={'senha'} label={'Senha:'} />
+            <SubmitButton/>           
+            <a href="/register" className="mx-auto underline capitalize font-serif text-amber-700">Não tem uma conta? Clique aqui para se registrar</a> 
         </form>
     )
 }

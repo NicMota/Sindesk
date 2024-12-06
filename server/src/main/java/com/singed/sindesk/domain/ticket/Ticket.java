@@ -1,6 +1,7 @@
 package com.singed.sindesk.domain.ticket;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.singed.sindesk.domain.topic.TopicTags;
 import com.singed.sindesk.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,8 +26,9 @@ public class Ticket {
 
     private String subject;
     private String description;
+
     @Enumerated(EnumType.STRING)
-    private TicketStatus status;
+    private TicketStatus status = TicketStatus.ABERTO;
     
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -37,19 +39,20 @@ public class Ticket {
     @JsonBackReference
     private User sender;
 
+    private TopicTags[] tags;
+
     public Ticket(TicketRequestDTO ticketRequestDTO)
     {
         this.subject = ticketRequestDTO.subject();
         this.description = ticketRequestDTO.description();
-        this.status = ticketRequestDTO.status();
+        this.tags = ticketRequestDTO.tags();
     }
     public Ticket(TicketRequestDTO ticketRequestDTO, User sender)
     {
         this.subject = ticketRequestDTO.subject();
         this.description = ticketRequestDTO.description();
-        this.status = ticketRequestDTO.status();
+        this.tags = ticketRequestDTO.tags();
         this.sender = sender;
-
     }
     
 }
