@@ -52,6 +52,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET,"/api/topic/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"api/topic/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/user/**").hasAnyRole("USER","ADMIN")
+                        .requestMatchers(HttpMethod.POST,"/api/user/verify").permitAll()
                         .requestMatchers("/ws/**").permitAll()
                         .anyRequest().authenticated()
                 )

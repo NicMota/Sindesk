@@ -41,7 +41,7 @@ public class EmailService {
         EmailVerificationToken emailVerificationToken = new EmailVerificationToken(user,token,expiresAt);
         tokenRepository.save(emailVerificationToken);
 
-        String verifyLink = "http://localhost:8080/api/user/verify/" + token;
+        String verifyLink = "http://localhost:3000/verify/" + token;
         try{
             this.sendEmail(user.getEmail(),"Link de Verificação",verifyLink);
         }catch (Exception e){

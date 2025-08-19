@@ -3,6 +3,7 @@ package com.singed.sindesk.controller;
 
 import com.singed.sindesk.domain.email.EmailVerificationToken;
 import com.singed.sindesk.domain.ticket.Ticket;
+import com.singed.sindesk.domain.token.TokenRequest;
 import com.singed.sindesk.domain.ticket.TicketResponseDTO;
 import com.singed.sindesk.domain.user.User;
 import com.singed.sindesk.repository.EmailTokenRepository;
@@ -61,9 +62,9 @@ public class UserController {
     }
 
     @PostMapping("/verify")
-    public ResponseEntity verifyEmail(@RequestBody String token)
+    public ResponseEntity verifyEmail(@RequestBody TokenRequest token)
     {
-        Optional<EmailVerificationToken> tkn = tokenRepository.findByToken(token);
+        Optional<EmailVerificationToken> tkn = tokenRepository.findByToken(token.token());
 
         if(tkn.isPresent())
         {
