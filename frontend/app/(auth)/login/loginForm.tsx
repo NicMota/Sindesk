@@ -36,9 +36,9 @@ export const LoginForm = () =>
         }
     }
     return (
-        <form className="flex flex-col m-auto gap-y-2" method="post" onSubmit={handleSubmit}>
-            <TextInput name={'email'} label={'E-mail:'} />
-            <PasswordInput name={'senha'} label={'Senha:'} />
+        <form className="flex flex-col mx-auto  my-8 gap-y-4" method="post" onSubmit={handleSubmit}>
+            <TextInput name={'email'} label={'E-mail:'} color="black"/>
+            <PasswordInput name={'senha'} label={'Senha:'} color="black"/>
             <SubmitButton/>           
             <a href="/register" className="mx-auto underline capitalize font-serif text-amber-700">Não tem uma conta? Clique aqui para se registrar</a> 
         </form>

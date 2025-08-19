@@ -21,12 +21,10 @@ export default async function Login()
     
     return( 
         <Layout>
-            <div className="w-full bg-indigo-700 h-full flex">
-                <div className="size-fit p-8 rounded-2xl bg-indigo-100 border-2 border-amber-500 flex flex-col m-auto ">
+            <div className="w-full bg-indigo-500 h-full flex">
+                <div className="size-fit h-1/2 p-8 rounded-xl bg-slate-50 border-2 border-amber-500 flex flex-col m-auto ">
                     <LoginForm/>
-                    
                 </div>
-                    
             </div>
         </Layout>
     )

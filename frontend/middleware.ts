@@ -17,6 +17,8 @@ interface JwtPayload {
 export function middleware(request: NextRequest) {
   const token =  request.cookies.get('token')?.value;
   const {pathname} = request.nextUrl;
+
+
   if(pathname.startsWith('/dashboard/admin')){
     if(token){
       try{
@@ -42,7 +44,7 @@ export function middleware(request: NextRequest) {
       return NextResponse.next();
   }
   
-  if(pathname === '/dashboard/create')
+  if(pathname === '/dashboard/create' || pathname.startsWith('/dashboard/tickets'))
   {
     try{
       const user = jwtDecode<JwtPayload>(token);

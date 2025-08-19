@@ -26,8 +26,8 @@ export default async function Register()
                 <div className=" bg-amber-200 p-5 w-3/5 flex flex-col ">
                     <RegisterForm/>
                 </div>
-                <div className="flex-1 py-4 bg-indigo-500 w-2/5">
-                    <Image className="self-center" alt='sindesk' src={sindesk}/>
+                <div className="flex-1 py-4 bg-indigo-500 justify-center flex w-2/5">
+                    <Image className="max-w-full h-auto " alt='sindesk' src={sindesk}/>
                 </div>
             </div>
         </Layout>

@@ -55,7 +55,7 @@ export function TicketForm()
 
             <form className="my-10 h-fit border-4 bg-zinc-100  border-amber-400 rounded p-2 mx-auto gap-y-4 flex flex-col" onSubmit={handleSubmit}>
             
-                <TextInput name={'subject'} label={'Assunto:'}/>
+                <TextInput name={'subject'} label={'Assunto:'} color="amber-800"/>
                 <TextArea name={'description'} label={'Descrição:'}/>
                 <TagsSection selected={selected} setSelected={setSelected} tags={tags} setTags={setTags}/>
                 <SubmitButton/>

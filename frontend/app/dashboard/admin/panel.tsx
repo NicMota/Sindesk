@@ -34,7 +34,9 @@ export const AdminPanel = ({faq_topics,users,tickets,closed,pending,open})=>
                 {selected==='tickets'&&<TicketsPanel tickets={tickets}/> || selected==='users'&& <UsersPanel users={users}/> || selected==='FAQ'&& <FaqPanel faq_topics={faq_topics}/>}
                 
             </div>
-            <div className="flex grow bg-[url('./dashboard/admin/admin.svg')] bg-no-repeat bg-contain bg-center"/>
+            <div className="flex grow  bg-no-repeat justify-center items-end">
+                <Image alt='admin image' src={admin} className="w-5/6"/>
+            </div>
                
 
            
